@@ -14,15 +14,26 @@ class SubjectsController < ApplicationController
   end
 
   def edit
+    @subject = Subject.find(params[:id])
+  end
+
+  def update
+    @subject = Subject.find(params[:id])
+
+    if @subject.update_attributes(subject_params)
+      redirect_to(:action => 'index')
+    else
+      render('edit')
+    end
   end
 
   def create
-    @subject = Subject.new(params.require(:subject).permit(:name,:position,:visible))
+    @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to(:action => 'index')
+      redirect_to(:action => 'show')
     else
-      render('new')
+      render('edit')
     end
 
   end
