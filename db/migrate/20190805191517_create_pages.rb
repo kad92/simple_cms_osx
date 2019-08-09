@@ -1,7 +1,7 @@
 class CreatePages < ActiveRecord::Migration[5.2]
   def change
     create_table :pages do |t|
-      t.references :subjects, foreign_key: true 
+      t.references :subject, foreign_key: true
       t.string "name"
       t.string "permalink"
       t.integer "position"

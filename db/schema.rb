@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_08_05_191523) do
 
   create_table "pages", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "subjects_id"
+    t.bigint "subject_id"
     t.string "name"
     t.string "permalink"
     t.integer "position"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_191523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["permalink"], name: "index_pages_on_permalink"
-    t.index ["subjects_id"], name: "index_pages_on_subjects_id"
+    t.index ["subject_id"], name: "index_pages_on_subject_id"
   end
 
   create_table "sections", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -44,6 +44,6 @@ ActiveRecord::Schema.define(version: 2019_08_05_191523) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "pages", "subjects", column: "subjects_id"
+  add_foreign_key "pages", "subjects"
   add_foreign_key "sections", "pages", column: "pages_id"
 end
